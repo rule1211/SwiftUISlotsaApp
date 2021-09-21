@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    private var symbols = ["apple", "star", "cherry"]
+    @State private var numbers = [0, 2, 1]
     @State private var credits = 1000
     
     var body: some View {
@@ -51,17 +54,19 @@ struct ContentView: View {
                 HStack {
                     Spacer()
                     
-                    Image("apple")
+                    Image(symbols[numbers[0]])
                         .resizable()
                         .aspectRatio(1, contentMode: .fit)
                         .background(Color.white.opacity(0.5))
                         .cornerRadius(20)
-                    Image("apple")
+                    
+                    Image(symbols[numbers[1]])
                         .resizable()
                         .aspectRatio(1, contentMode: .fit)
                         .background(Color.white.opacity(0.5))
                         .cornerRadius(20)
-                    Image("apple")
+                    
+                    Image(symbols[numbers[2]])
                         .resizable()
                         .aspectRatio(1, contentMode: .fit)
                         .background(Color.white.opacity(0.5))
@@ -74,7 +79,10 @@ struct ContentView: View {
                 
                 // Button
                 Button(action: {
-                    self.credits += 1
+                    // change the images
+                    self.numbers[0] = Int.random(in: 0...self.symbols.count - 1)
+                    self.numbers[1] = Int.random(in: 0...self.symbols.count - 1)
+                    self.numbers[2] = Int.random(in: 0...self.symbols.count - 1)
                     
                 }) {
                     Text("Spin")

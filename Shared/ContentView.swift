@@ -41,6 +41,24 @@ struct ContentView: View {
                     .padding(.all, 10)
                     .background(Color.white.opacity(0.5))
                     .cornerRadius(20)
+                // Cards
+                HStack {
+                    Image("apple")
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fit)
+                        .background(Color.white.opacity(0.5))
+                        .cornerRadius(20)
+                    Image("apple")
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fit)
+                        .background(Color.white.opacity(0.5))
+                        .cornerRadius(20)
+                    Image("apple")
+                        .resizable()
+                        .aspectRatio(1, contentMode: .fit)
+                        .background(Color.white.opacity(0.5))
+                        .cornerRadius(20)
+                }
             }
         }
     }

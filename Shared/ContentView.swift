@@ -12,6 +12,7 @@ struct ContentView: View {
     private var symbols = ["apple", "star", "cherry"]
     @State private var numbers = [0, 2, 1]
     @State private var credits = 1000
+    private var betAmount = 5
     
     var body: some View {
         ZStack {
@@ -79,11 +80,20 @@ struct ContentView: View {
                 
                 // Button
                 Button(action: {
-                    // change the images
+                    // Change the images
+                    
                     self.numbers[0] = Int.random(in: 0...self.symbols.count - 1)
                     self.numbers[1] = Int.random(in: 0...self.symbols.count - 1)
                     self.numbers[2] = Int.random(in: 0...self.symbols.count - 1)
                     
+                    // Check winnings
+                    if self.numbers[0] == self.numbers[1] && self.numbers[1] == self.numbers[2] {
+                        // Won
+                        self.credits += self.betAmount * 10
+                    }
+                    else {
+                        self.credits -= self.betAmount
+                    }
                 }) {
                     Text("Spin")
                         .bold()

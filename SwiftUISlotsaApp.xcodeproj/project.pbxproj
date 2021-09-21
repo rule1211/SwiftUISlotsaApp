@@ -13,6 +13,7 @@
 		BD3D548E26FA3AA000C0BFAB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3D547926FA3A9E00C0BFAB /* ContentView.swift */; };
 		BD3D548F26FA3AA000C0BFAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD3D547A26FA3AA000C0BFAB /* Assets.xcassets */; };
 		BD3D549026FA3AA000C0BFAB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD3D547A26FA3AA000C0BFAB /* Assets.xcassets */; };
+		BD3D549A26FA53C500C0BFAB /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3D549926FA53C500C0BFAB /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		BD3D548726FA3AA000C0BFAB /* SwiftUISlotsaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUISlotsaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD3D548926FA3AA000C0BFAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD3D548A26FA3AA000C0BFAB /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		BD3D549926FA53C500C0BFAB /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			isa = PBXGroup;
 			children = (
 				BD3D547726FA3A9E00C0BFAB /* Shared */,
+				BD3D549B26FA53D700C0BFAB /* Preview Content */,
 				BD3D548126FA3AA000C0BFAB /* iOS */,
 				BD3D548826FA3AA000C0BFAB /* macOS */,
 				BD3D548026FA3AA000C0BFAB /* Products */,
@@ -59,6 +62,7 @@
 			children = (
 				BD3D547826FA3A9E00C0BFAB /* SwiftUISlotsaAppApp.swift */,
 				BD3D547926FA3A9E00C0BFAB /* ContentView.swift */,
+				BD3D549926FA53C500C0BFAB /* CardView.swift */,
 				BD3D547A26FA3AA000C0BFAB /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -88,6 +92,13 @@
 				BD3D548A26FA3AA000C0BFAB /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		BD3D549B26FA53D700C0BFAB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD3D548D26FA3AA000C0BFAB /* ContentView.swift in Sources */,
+				BD3D549A26FA53C500C0BFAB /* CardView.swift in Sources */,
 				BD3D548B26FA3AA000C0BFAB /* SwiftUISlotsaAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

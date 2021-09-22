@@ -10,8 +10,8 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var symbols = ["apple", "star", "cherry"]
-    @State private var numbers = [1, 2, 0]
-    @State private var backgrounds = [Color.white, Color.white, Color.white]
+    @State private var numbers = Array(repeating: 0, count: 9)
+    @State private var backgrounds = Array(repeating: Color.white, count: 9)
     @State private var credits = 1000
     private var betAmount = 5
     
@@ -53,53 +53,53 @@ struct ContentView: View {
                     .cornerRadius(20)
                 Spacer()
                 // Cards
-                HStack {
-                    Spacer()
-                    
-                    CardView(symbol: $symbols[numbers[0]], background: $backgrounds[0])
-                    
-                    CardView(symbol: $symbols[numbers[1]], background: $backgrounds[1])
-                    
-                    CardView(symbol: $symbols[numbers[2]], background: $backgrounds[2])
-                    
-                    
-                    Spacer()
-                    
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        CardView(symbol: $symbols[numbers[0]], background: $backgrounds[0])
+                        
+                        CardView(symbol: $symbols[numbers[1]], background: $backgrounds[1])
+                        
+                        CardView(symbol: $symbols[numbers[2]], background: $backgrounds[2])
+                        
+                        
+                        Spacer()
+                        
+                    }
+                    HStack {
+                        Spacer()
+                        
+                        CardView(symbol: $symbols[numbers[3]], background: $backgrounds[3])
+                        
+                        CardView(symbol: $symbols[numbers[4]], background: $backgrounds[4])
+                        
+                        CardView(symbol: $symbols[numbers[5]], background: $backgrounds[5])
+                        
+                        
+                        Spacer()
+                        
+                    }
+                    HStack {
+                        Spacer()
+                        
+                        CardView(symbol: $symbols[numbers[6]], background: $backgrounds[6])
+                        
+                        CardView(symbol: $symbols[numbers[7]], background: $backgrounds[7])
+                        
+                        CardView(symbol: $symbols[numbers[8]], background: $backgrounds[8])
+                        
+                        
+                        Spacer()
+                        
+                    }
                 }
                 Spacer()
                 
                 // Button
                 Button(action: {
                     
-                    // Set backrounds back to white
                     
-                    self.backgrounds[0] = Color.white
-                    self.backgrounds[1] = Color.white
-                    self.backgrounds[2] = Color.white
-                    
-                    // Change the images
-                    
-                    self.numbers[0] = Int.random(in: 0...self.symbols.count - 1)
-                    self.numbers[1] = Int.random(in: 0...self.symbols.count - 1)
-                    self.numbers[2] = Int.random(in: 0...self.symbols.count - 1)
-                    
-                    // Check winnings
-                    if self.numbers[0] == self.numbers[1] && self.numbers[1] == self.numbers[2] {
-                        // Won
-                        
-                        self.credits += self.betAmount * 10
-                        
-                        // Update backgrounds to green
-                        
-                        self.backgrounds[0] = Color.green
-                        self.backgrounds[1] = Color.green
-                        self.backgrounds[2] = Color.green
-                        
-                        
-                    }
-                    else {
-                        self.credits -= self.betAmount
-                    }
                 }) {
                     Text("Spin")
                         .bold()
@@ -114,6 +114,52 @@ struct ContentView: View {
                 Spacer()
             }
         }
+    }
+    func processResults(_ isMax:Bool = false) {
+        
+        // Set backrounds back to white
+        
+        self.backgrounds = self.backgrounds.map({
+            _ in
+            Color.white
+        })
+        if isMax {
+            //Spin all the cards
+            
+        }
+        else {
+            // Spin the middle row
+            
+        }
+        
+        //self.backgrounds[0] = Color.white
+       // self.backgrounds[1] = Color.white
+      //  self.backgrounds[2] = Color.white
+        
+        // Change the images
+        
+        self.numbers[0] = Int.random(in: 0...self.symbols.count - 1)
+        self.numbers[1] = Int.random(in: 0...self.symbols.count - 1)
+        self.numbers[2] = Int.random(in: 0...self.symbols.count - 1)
+        
+        // Check winnings
+        if self.numbers[0] == self.numbers[1] && self.numbers[1] == self.numbers[2] {
+            // Won
+            
+            self.credits += self.betAmount * 10
+            
+            // Update backgrounds to green
+            
+            self.backgrounds[0] = Color.green
+            self.backgrounds[1] = Color.green
+            self.backgrounds[2] = Color.green
+            
+            
+        }
+        else {
+            self.credits -= self.betAmount
+        }
+        
     }
 }
 

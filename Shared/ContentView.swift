@@ -97,20 +97,49 @@ struct ContentView: View {
                 Spacer()
                 
                 // Button
-                Button(action: {
-                    
-                    
-                }) {
-                    Text("Spin")
-                        .bold()
-                        .foregroundColor(.white)
-                        .padding(.all, 10)
-                        .padding([.leading, .trailing], 30)
-                        .background(Color.pink)
-                        .cornerRadius(20)
-                    
+                HStack (spacing: 20) {
+                    VStack {
+                        Button(action: {
+                            // Process a single spin
+                            self.processResults()
+                            
+                            
+                        }) {
+                            Text("Spin")
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding(.all, 10)
+                                .padding([.leading, .trailing], 30)
+                                .background(Color.pink)
+                                .cornerRadius(20)
+                            
+                            
+                        }
+                        Text("\(betAmount) Credits").padding(.top, 10).font(.footnote)
+                    }
+                    VStack {
+                        Button(action: {
+                            // Process a single spin
+                            self.processResults(true)
+                            
+                            
+                        }) {
+                            Text("Max Spin")
+                                .bold()
+                                .foregroundColor(.white)
+                                .padding(.all, 10)
+                                .padding([.leading, .trailing], 30)
+                                .background(Color.pink)
+                                .cornerRadius(20)
+                            
+                            
+                        }
+                        Text("\(betAmount * 5) Credits").padding(.top, 10).font(.footnote)
+                    }
                     
                 }
+                
+                
                 Spacer()
             }
         }
@@ -125,43 +154,79 @@ struct ContentView: View {
         })
         if isMax {
             //Spin all the cards
+            self.numbers = self.numbers.map({
+                _ in
+                Int.random(in: 0...self.symbols.count - 1)
+                
+            })
             
         }
         else {
             // Spin the middle row
+
+            
+            self.numbers[3] = Int.random(in: 0...self.symbols.count - 1)
+            self.numbers[4] = Int.random(in: 0...self.symbols.count - 1)
+            self.numbers[5] = Int.random(in: 0...self.symbols.count - 1)
             
         }
-        
-        //self.backgrounds[0] = Color.white
-       // self.backgrounds[1] = Color.white
-      //  self.backgrounds[2] = Color.white
-        
-        // Change the images
-        
-        self.numbers[0] = Int.random(in: 0...self.symbols.count - 1)
-        self.numbers[1] = Int.random(in: 0...self.symbols.count - 1)
-        self.numbers[2] = Int.random(in: 0...self.symbols.count - 1)
-        
+
         // Check winnings
-        if self.numbers[0] == self.numbers[1] && self.numbers[1] == self.numbers[2] {
-            // Won
-            
-            self.credits += self.betAmount * 10
-            
-            // Update backgrounds to green
-            
-            self.backgrounds[0] = Color.green
-            self.backgrounds[1] = Color.green
-            self.backgrounds[2] = Color.green
-            
-            
+        processWin(isMax)
+    
+    }
+    func processWin(_ isMax:Bool = false) {
+        
+        var matches = 0
+        if !isMax {
+            // Proccesing for single spin
+            if isMatch(3, 4, 5) { matches += 1 }
+
         }
         else {
-            self.credits -= self.betAmount
+            // Processig for max spin
+            
+            // Top row
+            if isMatch(3, 4, 5) { matches += 1 }
+
+            // Middle row
+            if isMatch(3, 4, 5) { matches += 1 }
+
+            // Bottom row
+            if isMatch(6, 7, 8) { matches += 1 }
+            
+            // Diagonal top left to bottom right
+            if isMatch(0, 8, 4) { matches += 1 }
+
+            // Diagonal top right to bottom left
+            if isMatch(2, 4, 6) { matches += 1 }
+
         }
+        // Check matches and distribute credits
+        if matches > 0 {
+            // At leaast 1 win
+            self.credits += matches * betAmount * 2
+        }
+        else if !isMax {
+            // 0 wins, single spin
+            self.credits -= betAmount
+            
+        }
+            // 0 wins,max spin
+        self.credits -= betAmount * 5
         
     }
-}
+    func isMatch(_ index1: Int, _ index2: Int, _ index3: Int) -> Bool {
+        if self.numbers[index1] == self.numbers[index2] && self.numbers[index2] == self.numbers[index3] {
+            self.backgrounds[index1] = Color.green
+            self.backgrounds[index2] = Color.green
+            self.backgrounds[index3] = Color.green
+            return true
+        }
+        return false
+    }
+    }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
